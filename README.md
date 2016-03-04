@@ -1,7 +1,7 @@
 # ExpressionParser
 Parametrized expression parser written for being used as a module in a larger applications for studying purposes.
 
-1. It processes a string like "cos(x)*3+2*sin(y)/5" or "max(a*a,b*b,c*c) - 12*a*b*c"into an Expression class object, which can calculate value of the expression for any parameters x and y;
+1. It processes a string like "cos(x)*3+2*sin(y)/5" or "max(a*a,b*b,c*c) - 12*a*b*c"into an Expression class object, which can calculate value of the expression for any parameters x and y, parametres can be Objects of any type.
 2. It finds errors in an input and throws an exception which often contains exact coordinates of the error;
 3. It is parametrized with 4 developer defined sets of mathematical actions: functions and infix, prefix and postfix operations;
 4. It is almost completely covered with JUnit tests.

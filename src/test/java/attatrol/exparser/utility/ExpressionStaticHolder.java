@@ -16,7 +16,7 @@ public class ExpressionStaticHolder
     //1+2
     public static final Expression EXPR_SIMPLE_1;
     static {
-        double[] constants = new double[] {1., 2.};
+    	Double[] constants = new Double[] {1., 2.};
         Action[] actions = new Action[] { new Action(new int[]{0,1}, INITIALIZER.getInfixOperation(PLUS))};
         EXPR_SIMPLE_1 = new Expression(new String[0], constants, actions, 0, 2);
     }
@@ -24,7 +24,7 @@ public class ExpressionStaticHolder
     //(a+2)*b
     public static final Expression EXPR_SIMPLE_2;
     static {
-        double[] constants = new double[] {2.};
+    	Double[] constants = new Double[] {2.};
         String[] args = new String[] {"a", "b"};
         Action[] actions = new Action[] { new Action(new int[]{0,2}, INITIALIZER.getInfixOperation(PLUS)),
                                           new Action(new int[]{3,1}, INITIALIZER.getInfixOperation(MULTIPLY)),          
@@ -35,7 +35,7 @@ public class ExpressionStaticHolder
     //max(-a<<,-b<<)
     public static final Expression EXPR_SIMPLE_3;
     static {
-        double[] constants = new double[0];
+    	Double[] constants = new Double[0];
         String[] args = new String[] {"a", "b"};
         Action[] actions = new Action[] { new Action(new int[]{1}, INITIALIZER.getPrefixOperation(MINUS)),
                                           new Action(new int[]{0}, INITIALIZER.getPrefixOperation(MINUS)),
@@ -50,13 +50,13 @@ public class ExpressionStaticHolder
     public static final Expression EXPR_SIMPLE_4;
     static {
         Action[] actions = new Action[] { new Action(new int[0], INITIALIZER.getFunction(PI))};
-        EXPR_SIMPLE_4 = new Expression(new String[0], new double[0], actions, 0, 0);
+        EXPR_SIMPLE_4 = new Expression(new String[0], new Double[0], actions, 0, 0);
     }
     
     //max (((a+b)%(c+d)),(a+c))
     public static final Expression EXPR_SIMPLE_5;
     static {
-        double[] constants = new double[0];
+    	Double[] constants = new Double[0];
         String[] args = new String[] {"a", "b", "c", "d"};
         Action[] actions = new Action[] { 
                                           new Action(new int[]{0,1}, INITIALIZER.getInfixOperation(PLUS)),
@@ -72,7 +72,7 @@ public class ExpressionStaticHolder
     //-25.6+100.32-12/  7
     public static final Expression EXPR_SIMPLE_6;
     static {
-        double[] constants = new double[] {25.6, 12., 7., 100.32};
+    	Double[] constants = new Double[] {25.6, 12., 7., 100.32};
         String[] args = new String[0];
         Action[] actions = new Action[] { new Action(new int[]{0}, INITIALIZER.getPrefixOperation(MINUS)),
                                           new Action(new int[]{1,2}, INITIALIZER.getInfixOperation(DIVIDE)),
@@ -86,7 +86,7 @@ public class ExpressionStaticHolder
     //max(122, 12.4) - +(1*3+sqrt(12+5)*-(4.6/3.1))
     public static final Expression EXPR_COMPLEX_1;
     static {
-        double[] constants = new double[] {4.6, 3.1, 12., 5., 1., 3., 122., 12.4};
+    	Double[] constants = new Double[] {4.6, 3.1, 12., 5., 1., 3., 122., 12.4};
         String[] args = new String[0];
         Action[] actions = new Action[] { new Action(new int[]{0,1}, INITIALIZER.getInfixOperation(DIVIDE)),
                                           new Action(new int[]{2,3}, INITIALIZER.getInfixOperation(PLUS)),
@@ -105,7 +105,7 @@ public class ExpressionStaticHolder
     //anthony1*anthony2/max(anthony1-2, anthony2-2)<<-13.4+sqrt(d) - -c<<<< +6<<
     public static final Expression EXPR_COMPLEX_2;
     static {
-        double[] constants = new double[] {2., 2., 6., 13.4};
+    	Double[] constants = new Double[] {2., 2., 6., 13.4};
         String[] args = new String[] {"anthony1", "anthony2", "d", "c"};
         Action[] actions = new Action[] { new Action(new int[]{0,4}, INITIALIZER.getInfixOperation(MINUS)),
                                           new Action(new int[]{1,5}, INITIALIZER.getInfixOperation(MINUS)),
@@ -129,7 +129,7 @@ public class ExpressionStaticHolder
     //---max(max(max(max(max(a,b), max(c, d)), 1),23b  <<<<  <<<<), --c+d/(a+b))<<<<
     public static final Expression EXPR_COMPLEX_3;
     static {
-        double[] constants = new double[]{1.};
+    	Double[] constants = new Double[]{1.};
         String[] args = new String[] {"a", "b", "c", "d", "23b"};
         Action[] actions = new Action[] { new Action(new int[]{0,1}, INITIALIZER.getFunction(MAX)),
                                           new Action(new int[]{2,3}, INITIALIZER.getFunction(MAX)),
@@ -158,7 +158,7 @@ public class ExpressionStaticHolder
     //a
     public static final Expression EXPR_TRIVIAL_1;
     static {
-        double[] constants = new double[0];
+    	Double[] constants = new Double[0];
         String[] args = new String[] {"a"};
         Action[] actions = new Action[0];
 
@@ -168,7 +168,7 @@ public class ExpressionStaticHolder
     //1
     public static final Expression EXPR_TRIVIAL_2;
     static {
-        double[] constants = new double[] {1.};
+    	Double[] constants = new Double[] {1.};
         String[] args = new String[0];
         Action[] actions = new Action[0];
         EXPR_TRIVIAL_2 = new Expression(args, constants, actions, 0, 1);

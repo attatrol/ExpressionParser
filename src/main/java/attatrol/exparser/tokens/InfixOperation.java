@@ -26,6 +26,7 @@ public abstract class InfixOperation extends Operation {
    * @param arg1 first operand
    * @param arg2 second operand
    * @return calculated value
+   * @throws WrongArgumentTypeException if wrong type of argument is passed into function. 
    */
-  public abstract double calculate(double arg1, double arg2);
+  public abstract Object calculate(Object arg1, Object arg2) throws WrongArgumentTypeException;
 }

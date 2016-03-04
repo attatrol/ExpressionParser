@@ -12,14 +12,14 @@ import attatrol.exparser.tokens.Token;
 public final class Expression
 {
     private String[] argumentNames;
-    private double[] constants;
+    private Double[] constants;
     private Action[] actions;
     private int arity;
     private int constantsNumber;
     
 
 
-    public Expression(String[] argumentNames, double[] constants, Action[] actions, int arity,
+    public Expression(String[] argumentNames, Double[] constants, Action[] actions, int arity,
             int constantsNumber)
     {
         this.argumentNames = argumentNames;
@@ -29,7 +29,7 @@ public final class Expression
         this.constantsNumber = constantsNumber;
     }
 
-    public double calculate(double[] arguments)
+    public Object calculate(Object[] arguments)
             throws IllegalArgumentException
     {
         if (arguments.length != arity) {
@@ -44,7 +44,7 @@ public final class Expression
             }
         }
         else {
-            List<Double> actionResults = new ArrayList<>(actions.length);
+            List<Object> actionResults = new ArrayList<>(actions.length);
             for (Action action : actions) {
                 final Token archetype = action.getAction();
                 final int[] args = action.getArgumentList();
@@ -63,7 +63,7 @@ public final class Expression
                 }
                 else {
                     final Function func = (Function) archetype;
-                    double[] cortege = new double[func.getArity()];
+                    Object[] cortege = new Object[func.getArity()];
                     for (int i=0; i<args.length; i++) {
                         cortege[i] = resolveArgument(arguments, actionResults, args[i]);
                     }
@@ -75,7 +75,7 @@ public final class Expression
         }
     }
 
-    private double resolveArgument(double[] arguments, List<Double> actionResults, int index)
+    private Object resolveArgument(Object[] arguments, List<Object> actionResults, int index)
     {
         if (index < arity) {
             return arguments[index];

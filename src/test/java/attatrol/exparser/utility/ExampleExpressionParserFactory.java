@@ -12,6 +12,7 @@ import attatrol.exparser.tokens.InfixOperation;
 import attatrol.exparser.tokens.PostfixOperation;
 import attatrol.exparser.tokens.PrefixOperation;
 import attatrol.exparser.tokens.Token;
+import attatrol.exparser.tokens.WrongArgumentTypeException;
 
 public class ExampleExpressionParserFactory
 {
@@ -39,9 +40,12 @@ public class ExampleExpressionParserFactory
         {
 
             @Override
-            protected double innerCalculate(double[] args)
+            protected Object innerCalculate(Object[] args) throws WrongArgumentTypeException
             {
-                return Math.sqrt(args[0]);
+                if (!(args[0] instanceof Double)) {
+                    throw new WrongArgumentTypeException(args[0], this);
+                }
+                return Math.sqrt((Double) args[0]);
             }
         });
 
@@ -49,9 +53,17 @@ public class ExampleExpressionParserFactory
         {
 
             @Override
-            protected double innerCalculate(double[] args)
+            protected Object innerCalculate(Object[] args)throws WrongArgumentTypeException
             {
-                return args[0] > args[1] ? args[0] : args[1];
+                if (!(args[0] instanceof Double)) {
+                    throw new WrongArgumentTypeException(args[0], this);
+                }
+                else if (!(args[1] instanceof Double)) {
+                    
+                }
+                final Double arg0 = (Double) args[0];
+                final Double arg1 = (Double) args[1];
+                return arg0 > arg1 ? args[0] : args[1];
             }
         });
 
@@ -59,9 +71,9 @@ public class ExampleExpressionParserFactory
         {
 
             @Override
-            protected double innerCalculate(double[] args)
+            protected Object innerCalculate(Object[] args) throws WrongArgumentTypeException
             {
-                return 3.14;
+                return Double.valueOf(3.14);
             }
         });
 
@@ -69,45 +81,75 @@ public class ExampleExpressionParserFactory
         infixOperationLookup.put(PLUS, new InfixOperation(0)
         {
             @Override
-            public double calculate(double arg1, double arg2)
+            public Object calculate(Object arg1, Object arg2) throws WrongArgumentTypeException
             {
-                return arg1 + arg2;
+                if (!(arg1 instanceof Double)) {
+                    throw new WrongArgumentTypeException(arg1, this);
+                }
+                if (!(arg2 instanceof Double)) {
+                    throw new WrongArgumentTypeException(arg2, this);
+                }                
+                return (Double) arg1 + (Double) arg2;
             }
         });
 
         infixOperationLookup.put(MINUS, new InfixOperation(0)
         {
             @Override
-            public double calculate(double arg1, double arg2)
+            public Object calculate(Object arg1, Object arg2) throws WrongArgumentTypeException
             {
-                return arg1 - arg2;
+                if (!(arg1 instanceof Double)) {
+                    throw new WrongArgumentTypeException(arg1, this);
+                }
+                if (!(arg2 instanceof Double)) {
+                    throw new WrongArgumentTypeException(arg2, this);
+                }  
+                return (Double) arg1 - (Double) arg2;
             }
         });
 
         infixOperationLookup.put(DIVIDE, new InfixOperation(1)
         {
             @Override
-            public double calculate(double arg1, double arg2)
+            public Object calculate(Object arg1, Object arg2) throws WrongArgumentTypeException
             {
-                return arg1 / arg2;
+                if (!(arg1 instanceof Double)) {
+                    throw new WrongArgumentTypeException(arg1, this);
+                }
+                if (!(arg2 instanceof Double)) {
+                    throw new WrongArgumentTypeException(arg2, this);
+                }  
+                return (Double) arg1 / (Double) arg2;
             }
         });
 
         infixOperationLookup.put(MULTIPLY, new InfixOperation(1)
         {
             @Override
-            public double calculate(double arg1, double arg2)
+            public Object calculate(Object arg1, Object arg2) throws WrongArgumentTypeException
             {
-                return arg1 * arg2;
+                if (!(arg1 instanceof Double)) {
+                    throw new WrongArgumentTypeException(arg1, this);
+                }
+                if (!(arg2 instanceof Double)) {
+                    throw new WrongArgumentTypeException(arg2, this);
+                }  
+                return (Double) arg1 * (Double) arg2;
             }
         });
 
         infixOperationLookup.put(MOD, new InfixOperation(1)
         {
             @Override
-            public double calculate(double arg1, double arg2)
+            public Object calculate(Object arg1, Object arg2) throws WrongArgumentTypeException
             {
-                return arg1 % arg2;
+                if (!(arg1 instanceof Double)) {
+                    throw new WrongArgumentTypeException(arg1, this);
+                }
+                if (!(arg2 instanceof Double)) {
+                    throw new WrongArgumentTypeException(arg2, this);
+                } 
+                return (Double) arg1 % (Double) arg2;
             }
         });
 
@@ -115,8 +157,11 @@ public class ExampleExpressionParserFactory
         prefixOperationLookup.put(PLUS, new PrefixOperation()
         {
             @Override
-            public double calculate(double arg1)
+            public Object calculate(Object arg1) throws WrongArgumentTypeException
             {
+                if (!(arg1 instanceof Double)) {
+                    throw new WrongArgumentTypeException(arg1, this);
+                }
                 return arg1;
             }
         });
@@ -124,9 +169,12 @@ public class ExampleExpressionParserFactory
         prefixOperationLookup.put(MINUS, new PrefixOperation()
         {
             @Override
-            public double calculate(double arg1)
+            public Object calculate(Object arg1) throws WrongArgumentTypeException
             {
-                return -arg1;
+                if (!(arg1 instanceof Double)) {
+                    throw new WrongArgumentTypeException(arg1, this);
+                }
+                return - (Double) arg1;
             }
         });
 
@@ -135,9 +183,12 @@ public class ExampleExpressionParserFactory
         postfixOperationLookup.put(SHIFT, new PostfixOperation()
         {
             @Override
-            public double calculate(double arg1)
+            public Object calculate(Object arg1) throws WrongArgumentTypeException
             {
-                return arg1 * 2;
+                if (!(arg1 instanceof Double)) {
+                    throw new WrongArgumentTypeException(arg1, this);
+                }
+                return (Double) arg1 * 2;
             }
         });
 

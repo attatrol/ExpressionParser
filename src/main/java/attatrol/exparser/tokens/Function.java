@@ -24,7 +24,7 @@ public abstract class Function implements Token{
    * @return the function value.
    * @throws IllegalArgumentException thrown if arity isn't equal to the number of arguments.
    */
-  public double calculate(double...cortege) throws IllegalArgumentException {
+  public Object calculate(Object...cortege) throws IllegalArgumentException {
     if (cortege.length == this.arity) {
       return innerCalculate(cortege);
     }
@@ -37,7 +37,8 @@ public abstract class Function implements Token{
    * Contains processing of the calculation.
    * @param args the arguments.
    * @return  the function value.
+   * @throws WrongArgumentTypeException if wrong type of argument is passed into function. 
    */
-  protected abstract double innerCalculate(double[] args);
+  protected abstract Object innerCalculate(Object[] args) throws WrongArgumentTypeException;
 
 }

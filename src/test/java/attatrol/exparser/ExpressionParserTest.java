@@ -39,8 +39,8 @@ public class ExpressionParserTest
         try {
             fConstants = clazz.getDeclaredField("constants");
             fConstants.setAccessible(true);
-            double[] constantsExpected = (double[]) fConstants.get(expected);
-            double[] constantsActual = (double[]) fConstants.get(actual);
+            Double[] constantsExpected = (Double[]) fConstants.get(expected);
+            Double[] constantsActual = (Double[]) fConstants.get(actual);
             
             fActions = clazz.getDeclaredField("actions");
             fActions.setAccessible(true);
@@ -58,7 +58,7 @@ public class ExpressionParserTest
             Assert.assertEquals(expected.getArity(), actual.getArity());
             Assert.assertEquals(constNumExpected, constNumActual);
             
-            Assert.assertArrayEquals(constantsExpected, constantsActual, 0.00001);
+            Assert.assertArrayEquals(constantsExpected, constantsActual);
             Assert.assertArrayEquals(argsExpected, argsActual);
                            
             for (int i = 0; i < actionsActual.length; i++) {
